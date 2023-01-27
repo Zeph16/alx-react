@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.App-header {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: 1rem;
+  border-bottom: 5px solid red;
+}
+
+.App-body {
+  min-height: 500px;
+  max-width: 90%;
+  margin: 50px auto;
+}
+
+.App-footer {
+  border-top: 5px solid red;
+  text-align: center;
+  font-style: italic;
+}
+
+.top-logo {
+  width: 200px;
+  height: 200px;
+}
