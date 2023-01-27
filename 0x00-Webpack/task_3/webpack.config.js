@@ -17,12 +17,10 @@ module.exports = {
     maxEntrypointSize: 1000000,
     maxAssetSize: 1000000,
   },
+  devtool: 'inline-source-map',
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'public'),
-    },
+    contentBase: './public',
     port: 8564,
-    open: true,
   },
   module: {
     rules: [
