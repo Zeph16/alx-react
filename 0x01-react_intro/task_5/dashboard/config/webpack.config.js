@@ -1,21 +1,25 @@
-const path = require("path");
-const hwp = require("html-webpack-plugin");
-// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  devtool: 'inline-source-map',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "./dist"),
+  },
+  devServer: {
+    hot: true,
+    static: {
+      directory: path.join(__dirname, "./dist")
+     },
+    compress: true,
+    port: 8564,
   },
   performance: {
-    maxEntrypointSize: 1000000,
     maxAssetSize: 1000000,
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    port: 3000,
+    maxEntrypointSize: 1000000,
   },
   module: {
     rules: [
@@ -23,37 +27,32 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          }
-        }
+	    loader: "babel-loader"
+	    }
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'file-loader',
+          "file-loader",
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             options: {
-              bypassOnDebug: true,
-              disable: true,
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
             },
           },
         ],
       },
     ],
-  },
+   },
   plugins: [
-    // new CleanWebpackPlugin(),
-    new hwp({
-      title: 'Webpack',
-      filename: 'index.html',
-    }),
-  ],
+    new HtmlWebpackPlugin({
+      template: "./dist/index.html",
+       title: "Holberton Dashboard",
+    })
+  ]
 };
-
