@@ -1,0 +1,26 @@
+.Notifications {
+  display: inline;
+	border: 3px solid red;
+	padding: 6px 12px;
+	position: relative;
+	margin-top: 12px;
+  float: right;
+  min-width: 300px;
+}
+
+.menuItem {
+  text-align: right;
+}
+
+.Notifications p {
+  margin: 0;
+  margin-top: 15px;
+}
+
+li[data-notification-type="default"] {
+	color: blue;
+}
+
+li[data-notification-type="urgent"] {
+	color: red;
+}
